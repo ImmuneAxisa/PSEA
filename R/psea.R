@@ -9,9 +9,9 @@ psea <- function(gr, rank_col, gr_set, ...) {
   require(clusterProfiler)
   require(plyranges)
   
-  peak_sets <- join_overlap_left(gr_set) %>%
+  peak_sets <- join_overlap_left(gr, gr_set) %>%
     as.data.frame() %>%
-    unite("gene", seqnames, start, end) %>% # confusing but it needs to be named gene for DOSE
+    unite("gene", seqnames, start, end) %>% # confusing but it needs to be named gene for clusterProfiler
     dplyr::filter(!is.na(term)) %>%
     dplyr::select(term, gene)
   
