@@ -1,0 +1,60 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Peak Set Enrichment analysis (PSEA)
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of PSEA is to test for enrichment in public peak set data using preranked peak data as input.
+
+For example ATACseq peak can be tested with `DiffBind` for differential opening, and ranking metrics, such as log Fold change can be used. We can then test for enrichment in opening (up) or closing (down) with publicly available databases, eg [LOLAcore](https://databio.org/regiondb) for epigenetic annotations or [causalDB](http://www.mulinlab.org/causaldb/) for finemapped credible intervals of disease loci derived from GWAS dataset.
+
+PSEA returns a `gseResult` object that is compatible with `DOSE` package routines.
+
+## Installation
+
+You can install the development version of PSEA from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("ImmuneAxisa/PSEA")
+# install.packages("devtools")
+devtools::install_github("ImmuneAxisa/PSEA")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(PSEA)
+library(plyranges)
+library(dplyr)
+
+gr <- data.frame(
+seqnames = "chr1",
+start = seq(0,9999,100),
+width = 30,
+ranking_metric = -50:49
+  ) %>%
+  as_granges()
+
+gr_set <- shift_right(gr, rep_len(c(20,50),100)) %>%
+  mutate(term = "peakSet1")
+
+psea(gr, ranking_metric, gr_set)
+```
+

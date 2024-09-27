@@ -1,0 +1,5 @@
+^Makefile$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.DS_Store$
+^README\.Rmd$

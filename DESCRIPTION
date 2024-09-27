@@ -1,0 +1,26 @@
+Package: PSEA
+Title: Peak-set enrichment analysis
+Version: 0.1.0
+Authors@R: 
+    person("Pierre-Paul", "Axisa", , "pp.axisa@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1446-3922"))
+Description: PSEA takes in a ranked list of peaks, 
+  e.g. from differential abundance analysis, 
+  and calculated enrichment scores for other peak-set. 
+  To do so, it first annotates peaks from the primary dataset 
+  by overlap with public peak-sets from databases. 
+  It then uses GSEA for rank-based enrichment analyses.
+License: Artistic-2.0
+Encoding: UTF-8
+ByteCompile: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 4.1),
+    plyranges (>= 1.24.0),
+    clusterProfiler
+Imports: 
+    dplyr,
+    magrittr,
+    tibble,
+    tidyr
